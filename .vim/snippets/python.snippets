@@ -1,0 +1,198 @@
+snippet #!
+	#!/usr/bin/python
+
+snippet imp
+	import ${1:module}
+# Module Docstring
+snippet docs
+	'''
+	File: ${1:`Filename('$1.py', 'foo.py')`}
+	Author: ${2:`g:snips_author`}
+	Description: ${3}
+	'''
+
+snippet stdImport
+	# Sys imports
+	import os, sys, ftplib, re
+	from subprocess import call
+	from datetime import datetime, timedelta, date
+	import logging
+	import time
+	import traceback
+
+	# DB imports
+	import cx_Oracle
+
+snippet profile
+	@profile
+snippet print
+	print "${1:value}: %s" %($1)
+snippet resplit
+	re.split("${1:separator}", ${2:longstring})
+snippet resub
+	re.sub("${1:old}", "${2:new}", ${3:str})
+snippet tickerAppend
+	tickers.append(${1:value}) # ${2}
+snippet logdebug
+	self.log.debug('${1:value}'$2)
+snippet loginfo
+	self.log.info('${1:value}'$2)
+snippet logerror
+	self.log.error('${1:value}'$2)
+snippet logdebugs
+	self.log.debug('${1:value} : %20s' %(${2}) )
+snippet loginfos
+	self.log.info('${1:value} : %20s' %(${2}) )
+snippet logerrors
+	self.log.error('${1:value} : %20s' %(${2}) )
+snippet logwarnings
+	self.log.warning('${1:value} : %20s' %(${2}) )
+snippet fwrite
+	file.write('${1:value}\n')
+snippet dbconnecR
+	connection = cx_Oracle.connect(${1:CnxString})
+	cursor = connection.cursor()
+	cursor.execute(${2:Query})
+snippet dbconnecW
+	connection = cx_Oracle.connect(${1:CnxString})
+	cursor = connection.cursor()
+	cursor.executemany(${2:Query}, ${3:Datalist})
+	connection.commit()
+	cursor.close()
+snippet libdbconR
+	query = """
+	    ${1:query}
+	"""
+	self.cursor.execute(query)
+	fetchResult = self.cursor.fetchall()
+snippet libdbconnecR
+	self.log.info("Connecting to Oracle DB ...")
+	connection = self.getDb(${1:DbIdentifier})
+	self.log.info(" => connected as %s@%s"%(connection._conn.username, connection._conn.tnsentry))
+	cursor = connection.cursor()
+	cursor.execute(${2:Query})
+snippet libdbconnecW
+	self.log.info("Connecting to Oracle DB ...")
+	connection = self.getDb(${1:DbIdentifier})
+	self.log.info(" => connected as %s@%s"%(connection._conn.username, connection._conn.tnsentry))
+	cursor = connection.cursor()
+	cursor.executemany(${2:Query}, ${3:Datalist})
+	connection.commit()
+	cursor.close()
+snippet parserAddOption
+	self._parser.add_option("-${1:abbr}", "--${2:name}", dest="${3:dest}",
+	      help="${4:help}")
+snippet timetostring
+	strftime("%H:%M:%S")
+snippet datetimetostring
+	strftime("%Y-%m-%d %H:%M:%S")
+snippet datetostring
+	strftime("%Y-%m-%d")
+snippet datetimetosqlstring
+	strftime("%b-%d-%Y %H:%M:%S")
+snippet datetosqlstring
+	strftime("%b-%d-%Y")
+snippet sqlstringtodate
+	datetime.strptime(${1:SqlDateString}, "%Y-%m-%d %H:%M:%S").date()
+snippet stringtodate
+	datetime.strptime(${1:DateString}, "%Y-%m-%d").date()
+snippet orastringtodate
+	TO_DATE(${1:SqlDateString}, 'Mon-DD-YYYY')
+snippet orastringtotimestamp
+	TO_TIMESTAMP(${1:SqlTimestampString}, 'Mon-DD-YYYY HH24:MI:SS')
+snippet wh
+	w	<enter description here>hile ${1:c ondition}:
+		${2}
+snippet forDict
+	for ${1:key}, ${2:value} in ${3:dict}.iteritems() : 
+	    ${4}
+snippet for
+	for ${1} in ${2}:
+		${3}
+snippet if
+	if ${1} :
+	    ${2}
+# New Class
+snippet cl
+	class ${1:ClassName}(${2:object}):
+		"""${3:docstring for $1}"""
+		def __init__(self, ${4:arg}):
+			${5:super($1, self).__init__()}
+			self.$4 = $4
+			${6}
+# New Function
+snippet def
+
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		""" ${3:docstring for $1} """
+		${4:code}
+	# end $1
+
+snippet defe
+
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		""" ${3:docstring for $1} """
+		try:
+			${4:code}
+		except Exception, e :
+			self.log.info( "Exception during $1 " )
+			for stack in repr(traceback.format_stack()): self.log.info(stack)
+			return False
+		return True
+	# end $1
+
+snippet deff
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		${3}
+# New Method
+snippet defs
+	def ${1:mname}(self, ${2:arg}):
+		${3:pass}
+# New Property
+snippet property
+	def ${1:foo}():
+		doc = "${2:The $1 property.}"
+		def fget(self):
+			${3:return self._$1}
+		def fset(self, value):
+			${4:self._$1 = value}
+# Lambda
+snippet ld
+	${1:var} = lambda ${2:vars} : ${3:action}
+snippet .
+	self.
+snippet try Try/Except
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+snippet try Try/Except/Else
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+snippet try Try/Except/Finally
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	finally:
+		${5:pass}
+snippet try Try/Except/Else/Finally
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+	finally:
+		${6:pass}
+# if __name__ == '__main__':
+snippet ifmain
+	if __name__ == '__main__':
+		${1:main()}
+# __magic__
+snippet _
+	__${1:init}__${2}

@@ -1,0 +1,136 @@
+# Read File Into Vector
+snippet readfile
+	std::vector<char> v;
+	if (FILE *${2:fp} = fopen(${1:"filename"}, "r")) {
+		char buf[1024];
+		while (size_t len = fread(buf, 1, sizeof(buf), $2))
+			v.insert(v.end(), buf, buf + len);
+		fclose($2);
+	}${3}
+snippet androidLog
+	__android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "${1:log}");
+# foreach
+snippet foreach
+	foreach(${1}; ${2}) {
+	  ${3}
+	}
+# foreach in range
+snippet foreachRange
+	foreach(${1}; ${2} .. ${3}) {
+	  ${4}
+	}
+snippet forint
+	for(int ${1:i} = 0; $1 < ${2}; ++$1) {
+	  ${3}
+	}
+# std::map
+snippet map
+	std::map<${1:key}, ${2:value}> ${3}
+snippet forMap
+	for(std::map<${1:Type},${2:Value}>::iterator it${3:Name} = ${4:Container}.begin(); 
+		it$3 != $4.end(); ++it$3) { 
+	  ${5}
+	} 
+snippet makePair
+	.insert(std::make_pair(${1}, ${2}))
+# std::vector
+snippet vector
+	std::vector<${1:char}> ${2}
+snippet forVect
+	for(std::vector<${1:Type}>::iterator it${2:Name} = ${3:Container}.begin(); 
+		it$2 != $3.end(); ++it$2) { 
+	  ${4}
+	}  
+snippet doubleForVect
+	std::vector<${1:FirstType}>:: iterator it${2:First} = ${3:FirstContainer}.begin();
+	std::vector<${4:SecondType}>:: iterator it${5:Second} = ${6:SecondContainer}.begin();
+	for(; it$2 != $3.end(), it$5 != $6.end(); ++it$2, ++it$5) {
+	  ${7}
+	}
+# std::list
+snippet list
+	std::list<${1:char}> ${2}
+
+snippet forList
+	for(std::list<${1:Type}>::iterator it${2:Name} = ${3:Container}.begin(); 
+		it$2 != $3.end(); ++it$2) { 
+	   ${4}
+	}  
+snippet luabind
+	static int ${1:function}(lua_State *L) {
+	  int nargs = lua_gettop(L);
+	  for (int i = 1; i <= nargs; i++) {
+	  }
+	  ${3:code}
+	  lua_pushnumber(L, 0); // return code
+	  return ${2:nresults};
+	}
+# std::set
+snippet set
+	std::set<${1:char}> ${2}
+
+snippet forSet
+	for(std::set<${1:Type}>::iterator it${2:Name} = ${3:Container}.begin(); 
+		it$2 != $3.end(); ++it$2) { 
+	  ${4}
+	}  
+	
+snippet while
+	while(${1}) {
+	  ${2}
+	}
+
+snippet cout
+	std::cout << ${1:stuff} << std::endl;
+snippet print
+	std::cout << "${1:stuff}: " << $1 << std::endl;
+snippet include
+	#include "${1:lib}"
+
+snippet str
+	std::string ${1:name}
+
+# c++ standard includes
+snippet includeStd
+	#include <stdio.h>
+	#include <iostream>
+	#include <fstream>
+	#include <sstream>
+	#include <memory.h>
+	#include <assert.h>
+	#include <algorithm>
+	#include <functional>
+	#include <vector>
+	#include <string>
+	#include <map>
+	#include <set>
+	#include <deque>
+	#include <math.h>
+	#include <range>
+	#include <conv>
+
+# switch case
+
+snippet switch
+	switch(${1}) {
+	  case ${2}:
+	  ${3}
+	  break;
+	}
+
+
+# Namespace
+snippet ns
+	namespace ${1:`Filename('', 'my')`} {
+		${2} 
+	} /* $1 */
+# Class
+snippet cl
+	class ${1:`Filename('$1_t', 'name')`} {
+	public:
+		$1 (${2:arguments});
+		virtual ~$1 ();
+	
+	private:
+		${3:/* data */}
+	};
