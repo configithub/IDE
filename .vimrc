@@ -11,6 +11,9 @@ set softtabstop=2
 au FileType python set shiftwidth=4
 au FileType python set softtabstop=4
 
+" opencl coloration
+au BufNewFile,BufRead *.cl set syntax=opencl 
+
 " comment/uncomment lines c++
 au FileType c,cpp command! -range Cm <line1>,<line2>s/^\( *\)/\1\/\//
 au FileType c,cpp command! -range Uc <line1>,<line2>s/^\( *\)\/\//\1/
