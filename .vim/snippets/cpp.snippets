@@ -9,6 +9,11 @@ snippet readfile
 	}${3}
 snippet androidLog
 	__android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "${1:log}");
+snippet ifndef
+	#ifndef _${1:header}_H_
+	#define _$1_H_
+	${2:code}
+	#endif
 # foreach
 snippet foreach
 	foreach(${1}; ${2}) {

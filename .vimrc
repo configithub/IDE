@@ -14,9 +14,11 @@ au FileType python set softtabstop=4
 " opencl coloration
 au BufNewFile,BufRead *.cl set syntax=opencl 
 
+command! Bash ConqueTerm bash
+
 " comment/uncomment lines c++
-au FileType c,cpp command! -range Cm <line1>,<line2>s/^\( *\)/\1\/\//
-au FileType c,cpp command! -range Uc <line1>,<line2>s/^\( *\)\/\//\1/
+au FileType c,cpp,cl command! -range Cm <line1>,<line2>s/^\( *\)/\1\/\//
+au FileType c,cpp,cl command! -range Uc <line1>,<line2>s/^\( *\)\/\//\1/
 " comment/uncomment lines python
 au FileType python command! -range Cm <line1>,<line2>s/^\( *\)/\1#/ 
 au FileType python command! -range Uc <line1>,<line2>s/^\( *\)#/\1/ 
@@ -61,3 +63,6 @@ au FileType lua :nmap <F4> :!/usr/bin/vim ~/.vim/snippets/lua.snippets <CR>
 
 " use bashrc stuff when invoking commands from vim with ![cmd]
 set shell=bash\ --login
+
+" use pathogen plugin manager
+execute pathogen#infect()
