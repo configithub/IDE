@@ -41,7 +41,7 @@ function! stackoverflow#StackOverflow(query)
     "else
     let ftype = b:current_syntax
     let bufname = '__StackOverflow__' . ftype
-    execute 'belowright 10split ' . bufname
+    execute 'vertical 85split ' . bufname
     setlocal buftype=nofile
     setlocal nonumber
     "Map o to toggle fold open/close
