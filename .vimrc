@@ -69,6 +69,7 @@ execute pathogen#infect()
 
 " remap command T key to f6
 :nmap <F6> :CommandT <CR>
+:nmap <C-c> :CommandT <CR>
 " always open stuff in vertical split :
 let g:CommandTAcceptSelectionVSplitMap='<CR>'
 
