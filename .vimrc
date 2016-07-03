@@ -20,8 +20,8 @@ command! Bash ConqueTerm bash
 au FileType c,cpp,cl command! -range Cm <line1>,<line2>s/^\( *\)/\1\/\//
 au FileType c,cpp,cl command! -range Uc <line1>,<line2>s/^\( *\)\/\//\1/
 " comment/uncomment lines python
-au FileType python command! -range Cm <line1>,<line2>s/^\( *\)/\1#/ 
-au FileType python command! -range Uc <line1>,<line2>s/^\( *\)#/\1/ 
+au FileType python,sh command! -range Cm <line1>,<line2>s/^\( *\)/\1#/ 
+au FileType python,sh command! -range Uc <line1>,<line2>s/^\( *\)#/\1/ 
 " comment/uncomment lines sql
 au FileType sql,lua command! -range Cm <line1>,<line2>s/^/--/
 au FileType sql,lua command! -range Uc <line1>,<line2>s/^--//
@@ -73,3 +73,6 @@ execute pathogen#infect()
 " always open stuff in vertical split :
 let g:CommandTAcceptSelectionVSplitMap='<CR>'
 
+" highlight for line longer than 80chars
+highlight OverLength ctermbg=black ctermfg=darkred guibg=#592929
+match OverLength /\%81v.\+/
