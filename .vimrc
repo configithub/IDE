@@ -41,11 +41,9 @@ colorscheme desert
 
 "set ofu=syntaxcomplete#Complete
 
-" toggle relative number
-let g:NumberToggleTrigger="<F2>"
-
 " disable line numbers with f3
 :nmap <F3> :set invnumber<CR>
+:nmap <F2> :set invrelativenumber<CR>
 
 " current line number in bottom right corner
 :set ruler
@@ -76,3 +74,7 @@ let g:CommandTAcceptSelectionVSplitMap='<CR>'
 " highlight for line longer than 80chars
 highlight OverLength ctermbg=black ctermfg=darkred guibg=#592929
 match OverLength /\%81v.\+/
+
+:let mapleader = "-"
+:let maplocalleader = ","
+filetype plugin indent on
